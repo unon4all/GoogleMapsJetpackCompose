@@ -9,10 +9,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.googlemapskotlinjetpackcompose.ui.theme.GoogleMapsKotlinJetpackComposeTheme
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.rememberMarkerState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,5 +41,14 @@ fun GoogleMapsComposeExample() {
     }
     GoogleMap(
         modifier = Modifier.fillMaxSize(), cameraPositionState = cameraPositionState
-    )
+    ) {
+
+        //Marker Added
+        Marker(
+            state = rememberMarkerState(position = singapore),
+            title = "Marker1",
+            snippet = "Marker in Singapore",
+            icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
+        )
+    }
 }
